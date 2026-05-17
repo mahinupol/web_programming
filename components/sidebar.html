@@ -1,0 +1,50 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <a href="dashboard.html" class="sidebar-brand">
+      <i data-lucide="book-open-check" style="color: var(--accent-primary);"></i>
+      <span>SmartStudy</span>
+    </a>
+  </div>
+  
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-title">Overview</div>
+    <a href="dashboard.html" class="sidebar-item" data-page="dashboard">
+      <i data-lucide="layout-dashboard"></i>
+      <span>Dashboard</span>
+    </a>
+    <a href="tasks.html" class="sidebar-item" data-page="tasks">
+      <i data-lucide="check-square"></i>
+      <span>Tasks</span>
+    </a>
+    <a href="planner.html" class="sidebar-item" data-page="planner">
+      <i data-lucide="calendar"></i>
+      <span>Planner</span>
+    </a>
+    
+    <div class="sidebar-menu-title" style="margin-top: 1rem;">Insights</div>
+    <a href="analytics.html" class="sidebar-item" data-page="analytics">
+      <i data-lucide="bar-chart-2"></i>
+      <span>Analytics</span>
+    </a>
+    
+    <div class="sidebar-menu-title" style="margin-top: 1rem;">Preferences</div>
+    <a href="settings.html" class="sidebar-item" data-page="settings">
+      <i data-lucide="settings"></i>
+      <span>Settings</span>
+    </a>
+  </div>
+  
+  <div class="sidebar-footer">
+    <div class="user-profile-mini" onclick="window.location.href='profile.html'">
+      <div class="avatar" style="width: 32px; height: 32px; background: var(--accent-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">U</div>
+      <div class="user-info">
+        <span class="user-name">User</span>
+        <span class="user-email">View Profile</span>
+      </div>
+    </div>
+    <a href="index.html" class="sidebar-item" style="margin-top: 0.5rem; color: var(--danger);" onclick="showToast('Logged out successfully', 'success')">
+      <i data-lucide="log-out"></i>
+      <span>Log Out</span>
+    </a>
+  </div>
+</aside>

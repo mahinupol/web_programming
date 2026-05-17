@@ -1,0 +1,397 @@
+<footer class="footer">
+  <div class="footer-content">
+    <!-- Footer Top Section -->
+    <div class="footer-top">
+      <div class="footer-section footer-about">
+        <div class="footer-logo">
+          <i data-lucide="book-open-check"></i>
+          <span>SmartStudy</span>
+        </div>
+        <p class="footer-description">Transform your study habits with AI-powered task management, analytics, and scheduling. Built for ambitious students.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" title="Twitter">
+            <i data-lucide="twitter"></i>
+          </a>
+          <a href="#" class="social-link" title="GitHub">
+            <i data-lucide="github"></i>
+          </a>
+          <a href="#" class="social-link" title="LinkedIn">
+            <i data-lucide="linkedin"></i>
+          </a>
+          <a href="#" class="social-link" title="Email">
+            <i data-lucide="mail"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-section">
+          <h4 class="footer-section-title">Product</h4>
+          <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#">Download</a></li>
+            <li><a href="#">Updates</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="footer-newsletter">
+      <div class="newsletter-content">
+        <div>
+          <h3 class="newsletter-title">Get weekly study tips</h3>
+          <p class="newsletter-subtitle">Join thousands of students getting smarter about their studies.</p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2026 SmartStudy Planner. Empowering students worldwide.</p>
+        <div class="footer-badges">
+          <span class="badge">🚀 Built with ❤️</span>
+          <span class="badge">📱 Mobile Ready</span>
+          <span class="badge">⚡ Fast & Reliable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .footer {
+      background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+      border-top: 2px solid var(--border-color);
+      color: var(--text-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    }
+
+    .footer::after {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-logo i {
+      color: var(--accent-primary);
+      -webkit-text-fill-color: var(--accent-primary);
+    }
+
+    .footer-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      max-width: 350px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent-primary);
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .social-link:hover {
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .footer-section-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--secondary-primary));
+      transition: width 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-primary);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-newsletter {
+      background: linear-gradient(135deg, var(--accent-light), var(--secondary-light));
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+      animation: slideUp 0.6s ease-out 0.1s both;
+    }
+
+    .newsletter-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .newsletter-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .newsletter-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .newsletter-form .btn {
+      white-space: nowrap;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 2rem;
+      animation: slideUp 0.6s ease-out 0.2s both;
+    }
+
+    .footer-bottom-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-bottom-content p {
+      color: var(--text-secondary);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .footer-badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 0.5rem 1rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid var(--accent-light);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .badge:hover {
+      background: var(--accent-light);
+      border-color: var(--accent-primary);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .footer-content {
+        padding: 2rem 1rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .newsletter-content {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-bottom-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-newsletter {
+        padding: 1.5rem;
+      }
+
+      .footer-links-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .footer-badges {
+        gap: 0.5rem;
+      }
+
+      .badge {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+</footer>

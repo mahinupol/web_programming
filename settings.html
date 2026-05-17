@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | SmartStudy</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/app.js" defer></script>
+  
+  <style>
+    .settings-layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 2rem;
+    }
+    
+    .settings-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .settings-nav-item {
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius-sm);
+      color: var(--text-secondary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .settings-nav-item:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+    
+    .settings-nav-item.active {
+      background: var(--accent-light);
+      color: var(--accent-primary);
+    }
+    
+    .settings-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .settings-section-title {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .setting-row:last-child {
+      border-bottom: none;
+    }
+    
+    .setting-info h4 {
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .setting-info p {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin: 0;
+    }
+    
+    /* Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--border-color);
+      transition: .4s;
+      border-radius: 34px;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    input:checked + .slider {
+      background-color: var(--accent-primary);
+    }
+    
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    
+    @media (max-width: 768px) {
+      .settings-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+    <div id="sidebar-placeholder"></div>
+    
+    <main class="main-content">
+      <header class="dashboard-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <h1 style="font-size: 1.25rem; margin: 0;">Settings</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="theme-toggle" class="icon-btn"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
+        </div>
+      </header>
+      
+      <div class="page-content fade-in">
+        
+        <div class="settings-layout">
+          <aside class="settings-nav card" style="align-self: start;">
+            <div class="settings-nav-item active">General</div>
+            <div class="settings-nav-item">Notifications</div>
+            <div class="settings-nav-item">Data & Privacy</div>
+          </aside>
+          
+          <div class="card">
+            
+            <div class="settings-section">
+              <h3 class="settings-section-title">Appearance</h3>
+              
+              <div class="setting-row">
+                <div class="setting-info">
+                  <h4>Theme Selection</h4>
+                  <p>Choose between light and dark mode for the application.</p>
+                </div>
+                <div>
+                  <button class="btn btn-secondary" onclick="document.getElementById('theme-toggle').click();">Toggle Theme</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="settings-section">
+              <h3 class="settings-section-title">Notifications</h3>
+              
+              <div class="setting-row">
+                <div class="setting-info">
+                  <h4>Email Notifications</h4>
+                  <p>Receive daily summaries of your tasks.</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+              
+              <div class="setting-row">
+                <div class="setting-info">
+                  <h4>Deadline Alerts</h4>
+                  <p>Get notified when a task is due within 24 hours.</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="settings-section">
+              <h3 class="settings-section-title">Data Management</h3>
+              
+              <div class="setting-row">
+                <div class="setting-info">
+                  <h4>Export Data</h4>
+                  <p>Download all your tasks and analytics data as CSV.</p>
+                </div>
+                <button class="btn btn-secondary" onclick="showToast('Data export started...')"><i data-lucide="download" style="width:16px;"></i> Export</button>
+              </div>
+              
+              <div class="setting-row">
+                <div class="setting-info">
+                  <h4 style="color: var(--danger);">Danger Zone</h4>
+                  <p>Permanently delete your account and all data.</p>
+                </div>
+                <button class="btn" style="background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2);">Delete Account</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </main>
+  </div>
+</body>
+</html>
