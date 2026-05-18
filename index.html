@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartStudy | Intelligent Planner</title>
+  <title>SmartStudy | Master Your Studies with Intelligent Planning</title>
+  <meta name="description" content="Transform your study habits with AI-powered task management, analytics, and scheduling. Built for ambitious students.">
   
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
@@ -16,62 +17,49 @@
   <script src="js/app.js" defer></script>
   
   <style>
-    /* Landing Page Specific Styles */
+    /* ============================================
+       LANDING PAGE SPECIFIC STYLES
+       ============================================ */
+    
+    /* Hero Section */
     .hero {
-      min-height: calc(100vh - 80px);
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem;
+      justify-content: space-between;
+      text-align: left;
+      padding: 6rem 5% 4rem;
+      gap: 3rem;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     }
     
     .hero::before {
       content: '';
       position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent);
       border-radius: 50%;
       top: -100px;
       right: -100px;
-      animation: float 8s infinite ease-in-out;
+      animation: float 10s infinite ease-in-out;
       z-index: 0;
     }
     
     .hero::after {
       content: '';
       position: absolute;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.15), transparent);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.1), transparent);
       border-radius: 50%;
       bottom: -50px;
       left: -50px;
-      animation: float 10s infinite ease-in-out;
+      animation: float 12s infinite ease-in-out;
       z-index: 0;
-    }
-    
-    .hero-bg-blob {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      animation: pulse 8s infinite alternate;
-    }
-    
-    @keyframes pulse {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-      100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
     }
     
     @keyframes float {
@@ -79,64 +67,101 @@
       50% { transform: translateY(-30px); }
     }
     
-    .hero > * {
+    .hero-content {
+      flex: 1;
+      max-width: 50%;
       position: relative;
       z-index: 1;
     }
     
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid var(--accent-light);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent-primary);
+      margin-bottom: 2rem;
+      animation: slideUp 0.6s ease-out;
+    }
+    
+    .hero-badge i {
+      width: 14px;
+      height: 14px;
+    }
+    
     .hero-title {
-      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       margin-bottom: 1.5rem;
-      max-width: 900px;
       line-height: 1.1;
-      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary), var(--accent-hover));
-      background-size: 200% 200%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: slideUp 0.8s ease-out;
+      animation: slideUp 0.6s ease-out 0.1s both;
     }
     
     .hero-subtitle {
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 2vw, 1.25rem);
       color: var(--text-secondary);
       max-width: 700px;
-      margin-bottom: 2.5rem;
-      animation: slideUp 0.8s ease-out 0.1s both;
+      margin: 0 0 2.5rem 0;
+      line-height: 1.8;
+      animation: slideUp 0.6s ease-out 0.2s both;
     }
     
     .hero-actions {
       display: flex;
       gap: 1.5rem;
       margin-bottom: 4rem;
-      animation: slideUp 0.8s ease-out 0.2s both;
+      animation: slideUp 0.6s ease-out 0.3s both;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
     }
     
     .hero-actions .btn {
       font-size: 1.05rem;
       padding: 1rem 2.5rem;
-      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
     }
     
-    .dashboard-preview {
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-icon i {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .hero-visual {
+      flex: 1;
       width: 100%;
-      max-width: 1100px;
+      max-width: 50%;
       border-radius: var(--border-radius-lg);
       border: 2px solid var(--accent-light);
       background: linear-gradient(135deg, var(--bg-tertiary), rgba(255,255,255,0.05));
-      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.25);
+      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
       overflow: hidden;
       position: relative;
       z-index: 1;
-      animation: slideUp 0.8s ease-out 0.3s both;
+      animation: slideUp 0.8s ease-out 0.4s both;
       backdrop-filter: blur(10px);
+      min-height: 450px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     
-    .dashboard-preview::before {
+    .hero-visual::before {
       content: '';
       position: absolute;
       top: 0;
@@ -146,15 +171,260 @@
       background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
     }
     
-    .dashboard-preview img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .visual-content {
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 2;
     }
     
+    .visual-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--accent-light), var(--secondary-light));
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-primary);
+      font-size: 3rem;
+    }
+    
+    .visual-text h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .visual-text p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Dashboard Mockup */
+    .dashboard-mockup {
+      width: 92%;
+      height: 92%;
+      background: var(--bg-primary);
+      border-radius: var(--border-radius-lg);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      display: flex;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transform: perspective(1200px) rotateX(4deg) rotateY(-4deg) rotateZ(1deg) translateY(10px) scale(0.96);
+      transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 10;
+    }
+    
+    .hero-visual:hover .dashboard-mockup {
+      transform: perspective(1200px) rotateX(0) rotateY(0) rotateZ(0) translateY(0) scale(1);
+      box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.3);
+    }
+    
+    .mockup-sidebar {
+      width: 22%;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    
+    .mockup-logo {
+      height: 24px;
+      width: 70%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    
+    .mockup-menu {
+      height: 12px;
+      width: 80%;
+      border-radius: 4px;
+      background: var(--bg-tertiary);
+      opacity: 0.6;
+      transition: var(--transition);
+    }
+    .mockup-menu.active {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent-primary);
+      padding-left: 0.5rem;
+      width: 90%;
+      opacity: 1;
+    }
+    
+    .mockup-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1.5rem;
+      background: var(--bg-primary);
+    }
+    
+    .mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .mockup-search {
+      width: 40%;
+      height: 24px;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+    
+    .mockup-profile {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    
+    .mockup-avatar {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      border-radius: 50%;
+    }
+    
+    .mockup-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    
+    .mockup-stat {
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mockup-stat-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--accent-light);
+    }
+    
+    .mockup-stat-icon.pink { background: var(--secondary-light); }
+    .mockup-stat-icon.green { background: rgba(16, 185, 129, 0.1); }
+    
+    .mockup-stat-line {
+      height: 8px;
+      background: var(--bg-tertiary);
+      border-radius: 4px;
+      width: 40%;
+    }
+    .mockup-stat-value {
+      height: 16px;
+      background: var(--text-primary);
+      border-radius: 4px;
+      width: 60%;
+      opacity: 0.8;
+    }
+    
+    .mockup-content-area {
+      flex: 1;
+      display: flex;
+      gap: 1rem;
+      min-height: 150px;
+    }
+    
+    .mockup-chart {
+      flex: 2;
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    
+    .mockup-chart-header {
+      height: 12px;
+      width: 30%;
+      background: var(--bg-tertiary);
+      border-radius: 4px;
+      margin-bottom: auto;
+    }
+    
+    .mockup-list {
+      flex: 1;
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem;
+    }
+    
+    .mockup-list-header {
+      height: 12px;
+      width: 50%;
+      background: var(--bg-tertiary);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .mockup-list-item {
+      height: 24px;
+      background: var(--bg-primary);
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      padding: 0 0.5rem;
+      gap: 0.5rem;
+    }
+    .mockup-list-item::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-light);
+    }
+    
+    .mockup-list-item:nth-child(2)::before { background: var(--secondary-light); }
+    .mockup-list-item:nth-child(3)::before { background: rgba(16, 185, 129, 0.2); }
+    .mockup-list-item:nth-child(4)::before { background: rgba(245, 158, 11, 0.2); }
+    
+    .mockup-list-item-line {
+      height: 6px;
+      background: var(--bg-tertiary);
+      border-radius: 3px;
+      width: 60%;
+    }
+
+    
+    /* Features Section */
     .features-section {
       padding: 8rem 2rem;
-      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
       position: relative;
       overflow: hidden;
     }
@@ -164,7 +434,7 @@
       position: absolute;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(129, 140, 248, 0.1), transparent);
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.08), transparent);
       border-radius: 50%;
       top: 50%;
       left: -200px;
@@ -177,29 +447,50 @@
       position: absolute;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(244, 114, 182, 0.1), transparent);
+      background: radial-gradient(circle, rgba(244, 114, 182, 0.08), transparent);
       border-radius: 50%;
       bottom: -100px;
       right: -100px;
       z-index: 0;
     }
     
-    .features-section > * {
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
       position: relative;
       z-index: 1;
     }
     
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2.5rem;
-      margin-top: 4rem;
+      position: relative;
+      z-index: 1;
     }
     
     .feature-card {
       padding: 2.5rem;
-      border-radius: var(--border-radius);
-      background: linear-gradient(135deg, var(--bg-tertiary), rgba(255,255,255,0.03));
+      border-radius: var(--border-radius-lg);
+      background: linear-gradient(135deg, var(--bg-primary), rgba(99, 102, 241, 0.02));
       border: 1px solid var(--border-color);
       transition: var(--transition);
       position: relative;
@@ -209,6 +500,9 @@
     
     .feature-card:nth-child(2) { animation-delay: 0.1s; }
     .feature-card:nth-child(3) { animation-delay: 0.2s; }
+    .feature-card:nth-child(4) { animation-delay: 0.3s; }
+    .feature-card:nth-child(5) { animation-delay: 0.4s; }
+    .feature-card:nth-child(6) { animation-delay: 0.5s; }
     
     .feature-card::before {
       content: '';
@@ -229,14 +523,14 @@
     
     .feature-card:hover {
       transform: translateY(-12px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
       border-color: var(--accent-primary);
     }
     
     .feature-icon {
       width: 64px;
       height: 64px;
-      border-radius: 14px;
+      border-radius: 12px;
       background: linear-gradient(135deg, var(--accent-light), var(--secondary-light));
       color: var(--accent-primary);
       display: flex;
@@ -245,12 +539,25 @@
       margin-bottom: 1.5rem;
       font-size: 1.75rem;
       transition: var(--transition);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
     }
     
     .feature-card:hover .feature-icon {
       transform: scale(1.15) rotate(-5deg);
-      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.35);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    
+    .feature-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
     }
     
     @keyframes slideInUp {
@@ -263,70 +570,736 @@
         transform: translateY(0);
       }
     }
+    
+    /* How It Works Section */
+    .howitworks-section {
+      padding: 8rem 2rem;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .howitworks-section::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent);
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+      z-index: 0;
+    }
+    
+    .howitworks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .step-card {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+    
+    .step-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    
+    .step-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .step-card:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4rem;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), transparent);
+      display: none;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 8rem 2rem;
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .testimonials-section::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.08), transparent);
+      border-radius: 50%;
+      bottom: -100px;
+      right: -100px;
+      z-index: 0;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-card {
+      padding: 2rem;
+      border-radius: var(--border-radius-lg);
+      background: linear-gradient(135deg, var(--bg-primary), rgba(99, 102, 241, 0.02));
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(99, 102, 241, 0.1);
+    }
+    
+    .testimonial-rating {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 1rem;
+      color: #fbbf24;
+    }
+    
+    .testimonial-text {
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    
+    .author-info h4 {
+      margin: 0 0 0.25rem 0;
+      color: var(--text-primary);
+    }
+    
+    .author-info p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 8rem 2rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius-lg);
+      margin: 4rem 2rem;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+    }
+    
+    .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+    
+    .cta-content h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: 1rem;
+    }
+    
+    .cta-content p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      line-height: 1.8;
+    }
+    
+    .cta-actions {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-actions .btn {
+      font-weight: 600;
+    }
+    
+    /* FAQs Section */
+    .faqs-section {
+      padding: 8rem 2rem;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .faqs-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .faq-item:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1);
+    }
+    
+    .faq-question {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--bg-primary), rgba(99, 102, 241, 0.02));
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    
+    .faq-question:hover {
+      background: linear-gradient(135deg, var(--bg-primary), rgba(99, 102, 241, 0.05));
+    }
+    
+    .faq-question i {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      display: none;
+      padding: 1.5rem;
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 4rem 1.5rem 2rem;
+      }
+      
+      .features-section,
+      .howitworks-section,
+      .testimonials-section,
+      .faqs-section {
+        padding: 4rem 1.5rem;
+      }
+      
+      .cta-section {
+        margin: 2rem 1.5rem;
+        padding: 4rem 1.5rem;
+      }
+      
+      .section-header {
+        margin-bottom: 3rem;
+      }
+      
+      .step-card:not(:last-child)::after {
+        display: none;
+      }
+    }
+  </style>
+
+  <style>
+    /* Transparent Backgrounds for Video Scrubbing */
+    body { background-color: transparent !important; }
+    .hero, .features-section, .howitworks-section, .testimonials-section, .faqs-section {
+      background: transparent !important;
+    }
+    .hero::before, .hero::after, .features-section::before, .features-section::after, .howitworks-section::before, .testimonials-section::before {
+      opacity: 0.3; /* tone down decorative blobs */
+    }
   </style>
 </head>
 <body>
-  
+  <video id="scroll-bg-video" src="gemini_generated_video_65796784.MP4" muted playsinline style="position: fixed; top: 0; left: 15vw; width: 70vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,0.1);"></video>
+  <div id="video-overlay" style="position: fixed; top: 0; left: 15vw; width: 70vw; height: 100vh; background: var(--bg-primary); opacity: 0.85; z-index: -1; pointer-events: none; transition: background 0.3s; border-radius: 20px;"></div>
   <div id="navbar-placeholder"></div>
   
   <main>
-    <section class="hero slide-up">
-      <div class="hero-bg-blob"></div>
-      <h1 class="hero-title">Master your studies with intelligent planning</h1>
-      <p class="hero-subtitle">The all-in-one workspace for students to track tasks, plan schedules, and analyze study habits without the clutter.</p>
-      
-      <div class="hero-actions">
-        <a href=\"register.html\" class=\"btn btn-primary\">Get Started Free</a>
-        <a href=\"#features\" class=\"btn btn-secondary\">Explore Features</a>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i data-lucide="sparkles"></i>
+          <span>The smart way to study</span>
+        </div>
+        
+        <h1 class="hero-title">Master your studies with intelligent planning</h1>
+        
+        <p class="hero-subtitle">
+          The all-in-one workspace for students to track tasks, plan schedules, and analyze study habits. Transform procrastination into productivity.
+        </p>
+        
+        <div class="hero-actions">
+          <a href="register.html" class="btn btn-primary">
+            <span class="btn-icon">
+              <span>Get Started Free</span>
+              <i data-lucide="arrow-right"></i>
+            </span>
+          </a>
+          <a href="#features" class="btn btn-secondary">Explore Features</a>
+        </div>
       </div>
       
-      <div class="dashboard-preview glass">
-        <!-- Mockup placeholder -->
-        <div style="background: var(--bg-tertiary); height: 500px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary);">
-          <div style="text-align: center;">
-            <i data-lucide="layout" style="width: 64px; height: 64px; margin-bottom: 1rem; opacity: 0.5;"></i>
-            <h2>App Interface Preview</h2>
-            <p>Premium Dashboard Design</p>
+      <div class="hero-visual">
+        <div class="dashboard-mockup">
+          <div class="mockup-sidebar">
+            <div class="mockup-logo"></div>
+            <div class="mockup-menu active"></div>
+            <div class="mockup-menu"></div>
+            <div class="mockup-menu"></div>
+            <div class="mockup-menu"></div>
+          </div>
+          <div class="mockup-main">
+            <div class="mockup-header">
+              <div class="mockup-search"></div>
+              <div class="mockup-profile">
+                <div class="mockup-avatar"></div>
+              </div>
+            </div>
+            <div class="mockup-stats">
+              <div class="mockup-stat">
+                <div class="mockup-stat-icon"></div>
+                <div class="mockup-stat-line"></div>
+                <div class="mockup-stat-value"></div>
+              </div>
+              <div class="mockup-stat">
+                <div class="mockup-stat-icon pink"></div>
+                <div class="mockup-stat-line"></div>
+                <div class="mockup-stat-value"></div>
+              </div>
+              <div class="mockup-stat">
+                <div class="mockup-stat-icon green"></div>
+                <div class="mockup-stat-line"></div>
+                <div class="mockup-stat-value"></div>
+              </div>
+            </div>
+            <div class="mockup-content-area">
+              <div class="mockup-chart">
+                <div class="mockup-chart-header"></div>
+                <svg class="mockup-chart-svg" viewBox="0 0 100 50" preserveAspectRatio="none" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 75%;">
+                  <defs>
+                    <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--accent-primary)" stop-opacity="0.3" />
+                      <stop offset="100%" stop-color="var(--accent-primary)" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,50 L0,35 L15,25 L30,40 L45,20 L60,30 L75,10 L90,20 L100,5 L100,50 Z" fill="url(#chart-gradient)" />
+                  <path d="M0,35 L15,25 L30,40 L45,20 L60,30 L75,10 L90,20 L100,5" fill="none" stroke="var(--accent-primary)" stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="mockup-list">
+                <div class="mockup-list-header"></div>
+                <div class="mockup-list-item"><div class="mockup-list-item-line"></div></div>
+                <div class="mockup-list-item"><div class="mockup-list-item-line" style="width: 40%;"></div></div>
+                <div class="mockup-list-item"><div class="mockup-list-item-line" style="width: 70%;"></div></div>
+                <div class="mockup-list-item"><div class="mockup-list-item-line" style="width: 50%;"></div></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
     
+    <!-- Features Section -->
     <section id="features" class="features-section">
-      <div class="container text-center">
-        <h2 style=\"margin-bottom: 1rem; font-size: 2.5rem; background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\">Everything you need to succeed</h2>
-        <p style=\"max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8;\">Designed to remove friction from your study workflow and help you focus on what actually matters.</p>
+      <div class="container">
+        <div class="section-header">
+          <h2>Everything you need to succeed</h2>
+          <p>Powerful features designed to remove friction and help you focus on what actually matters: your studies.</p>
+        </div>
         
-        <div class="feature-grid text-left">
+        <div class="feature-grid">
           <div class="feature-card">
             <div class="feature-icon">
               <i data-lucide="calendar-check"></i>
             </div>
-            <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem;">Smart Task Management</h3>
-            <p style="margin: 0; font-size: 0.875rem;">Organize tasks by priority and deadline. Drag and drop functionality ensures seamless workflow organization.</p>
+            <h3>Smart Task Management</h3>
+            <p>Organize tasks by priority and deadline. Drag and drop functionality with real-time sync across all devices.</p>
           </div>
           
           <div class="feature-card">
             <div class="feature-icon">
               <i data-lucide="pie-chart"></i>
             </div>
-            <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem;">Visual Analytics</h3>
-            <p style="margin: 0; font-size: 0.875rem;">Track your study hours and completion rates with beautiful, interactive charts that keep you motivated.</p>
+            <h3>Visual Analytics</h3>
+            <p>Track study hours and completion rates with beautiful, interactive charts that keep you motivated and aware.</p>
           </div>
           
           <div class="feature-card">
             <div class="feature-icon">
               <i data-lucide="clock"></i>
             </div>
-            <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem;">Time Blocking</h3>
-            <p style="margin: 0; font-size: 0.875rem;">Plan your day minute-by-minute with our advanced timeline view integrated directly with your task list.</p>
+            <h3>Time Blocking</h3>
+            <p>Plan your day minute-by-minute with advanced timeline view integrated directly with your task list.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="bell-ring"></i>
+            </div>
+            <h3>Smart Notifications</h3>
+            <p>Get timely reminders and notifications that respect your focus time and help you stay on track.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="share-2"></i>
+            </div>
+            <h3>Collaboration</h3>
+            <p>Share projects with classmates, assign tasks, and collaborate seamlessly on group assignments.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="lock"></i>
+            </div>
+            <h3>Privacy & Security</h3>
+            <p>Bank-level encryption and privacy controls ensure your data is always protected and yours alone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section id="howitworks" class="howitworks-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>How It Works</h2>
+          <p>Get started in minutes with our simple, intuitive onboarding process.</p>
+        </div>
+        
+        <div class="howitworks-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Create Account</h3>
+            <p>Sign up with your email or connect with your favorite education platform in seconds.</p>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Set Goals</h3>
+            <p>Define your academic goals and let our smart system suggest optimal study schedules.</p>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Track Progress</h3>
+            <p>Watch your productivity soar as you complete tasks and gain insights into your habits.</p>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>Succeed</h3>
+            <p>Achieve your academic goals with data-driven insights and continuous improvement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Loved by students worldwide</h2>
+          <p>See what our users have to say about their SmartStudy experience.</p>
+        </div>
+        
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+            </div>
+            <p class="testimonial-text">
+              "SmartStudy completely changed how I manage my studies. My grades improved significantly in just one semester. The analytics feature is incredibly valuable."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">AJ</div>
+              <div class="author-info">
+                <h4>Alex Johnson</h4>
+                <p>Business Student</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+            </div>
+            <p class="testimonial-text">
+              "Finally, a tool that understands how students actually work. The time blocking feature helped me overcome procrastination for good."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SP</div>
+              <div class="author-info">
+                <h4>Sarah Patterson</h4>
+                <p>Computer Science Student</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+              <i data-lucide="star" style="fill: currentColor;"></i>
+            </div>
+            <p class="testimonial-text">
+              "The collaboration features make group projects so much easier. We can all stay on the same page and meet deadlines."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MK</div>
+              <div class="author-info">
+                <h4>Marcus Kim</h4>
+                <p>Engineering Student</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to transform your study life?</h2>
+          <p>Join thousands of students who are already achieving their academic goals with SmartStudy.</p>
+          <div class="cta-actions">
+            <a href="register.html" class="btn btn-light">
+              <span class="btn-icon">
+                <span>Start Free Trial</span>
+                <i data-lucide="arrow-right"></i>
+              </span>
+            </a>
+            <a href="login.html" class="btn btn-outline" style="color: white; border-color: white;">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FAQs Section -->
+    <section class="faqs-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+          <p>Everything you need to know about SmartStudy.</p>
+        </div>
+        
+        <div class="faqs-content">
+          <div class="faq-item active">
+            <div class="faq-question">
+              <span>Is SmartStudy free?</span>
+              <i data-lucide="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Yes! SmartStudy offers a free plan with all core features. We also offer premium plans for advanced analytics, collaboration, and unlimited storage.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I use SmartStudy on mobile?</span>
+              <i data-lucide="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Absolutely! SmartStudy is fully responsive and works great on all devices. You can even install it as a progressive web app for offline access.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How is my data stored and protected?</span>
+              <i data-lucide="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              We use bank-level encryption (AES-256) to protect your data. All data is stored in secure, distributed servers and you retain complete control over your information.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I export my data?</span>
+              <i data-lucide="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Yes, you can export all your data in multiple formats (CSV, PDF, JSON) at any time. Your data is always yours.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Do you offer student discounts?</span>
+              <i data-lucide="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              Yes! Students can get 50% off premium plans with a valid .edu email address. We believe education should be affordable.
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
-
+  
   <div id="footer-placeholder"></div>
+  
+  <script>
+    // FAQ Accordion functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+          // Close other items
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('active');
+            }
+          });
+          
+          // Toggle current item
+          item.classList.toggle('active');
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bgVideo = document.getElementById('scroll-bg-video');
+      if (bgVideo) {
+        // Preload video so scrubbing is smoother
+        bgVideo.preload = 'auto';
+        
+        // Wait for metadata to know duration
+        bgVideo.addEventListener('loadedmetadata', () => {
+          let isScrolling = false;
 
+          const updateVideoTime = () => {
+            const maxScroll = Math.max(1, document.body.scrollHeight - window.innerHeight);
+            const scrollFraction = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+            
+            // Scrub from 0 to video.duration based on scroll percentage
+            if (bgVideo.duration) {
+              bgVideo.currentTime = scrollFraction * bgVideo.duration;
+            }
+            isScrolling = false;
+          };
+
+          window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+              requestAnimationFrame(updateVideoTime);
+              isScrolling = true;
+            }
+          }, { passive: true });
+          
+          // Set initial frame
+          updateVideoTime();
+        });
+      }
+    });
+  </script>
 </body>
 </html>
+

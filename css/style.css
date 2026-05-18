@@ -253,10 +253,36 @@ a:hover {
   border-color: var(--accent-primary);
 }
 
+.btn-light {
+  background: white;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.btn-light:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
 .btn i {
   width: 1.2em;
   height: 1.2em;
 }
+
 
 /* ============================================
    CARDS & CONTAINERS
