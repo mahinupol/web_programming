@@ -135,11 +135,12 @@
     
     <main class="main-content">
       <header class="dashboard-topbar">
-        <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+          <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" title="Toggle sidebar"><i data-lucide="menu"></i></button>
           <h1 style="font-size: 1.25rem; margin: 0;">Settings</h1>
         </div>
         <div class="topbar-actions">
-          <button id="theme-toggle" class="icon-btn"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
+          <button id="theme-toggle" class="icon-btn" title="Toggle theme"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
         </div>
       </header>
       
@@ -147,14 +148,14 @@
         
         <div class="settings-layout">
           <aside class="settings-nav card" style="align-self: start;">
-            <div class="settings-nav-item active">General</div>
-            <div class="settings-nav-item">Notifications</div>
-            <div class="settings-nav-item">Data & Privacy</div>
+            <div class="settings-nav-item active" data-target="section-general">General</div>
+            <div class="settings-nav-item" data-target="section-notifications">Notifications</div>
+            <div class="settings-nav-item" data-target="section-data">Data &amp; Privacy</div>
           </aside>
           
           <div class="card">
             
-            <div class="settings-section">
+            <div class="settings-section" id="section-general">
               <h3 class="settings-section-title">Appearance</h3>
               
               <div class="setting-row">
@@ -168,9 +169,8 @@
               </div>
             </div>
             
-            <div class="settings-section">
+            <div class="settings-section" id="section-notifications" style="display: none;">
               <h3 class="settings-section-title">Notifications</h3>
-              
               <div class="setting-row">
                 <div class="setting-info">
                   <h4>Email Notifications</h4>
@@ -194,15 +194,14 @@
               </div>
             </div>
             
-            <div class="settings-section">
+            <div class="settings-section" id="section-data" style="display: none;">
               <h3 class="settings-section-title">Data Management</h3>
-              
               <div class="setting-row">
                 <div class="setting-info">
                   <h4>Export Data</h4>
                   <p>Download all your tasks and analytics data as CSV.</p>
                 </div>
-                <button class="btn btn-secondary" onclick="showToast('Data export started...')"><i data-lucide="download" style="width:16px;"></i> Export</button>
+                <button class="btn btn-secondary" id="export-btn"><i data-lucide="download" style="width:16px;"></i> Export</button>
               </div>
               
               <div class="setting-row">
@@ -210,7 +209,7 @@
                   <h4 style="color: var(--danger);">Danger Zone</h4>
                   <p>Permanently delete your account and all data.</p>
                 </div>
-                <button class="btn" style="background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2);">Delete Account</button>
+                <button class="btn" id="delete-account-btn" style="background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2);">Delete Account</button>
               </div>
             </div>
             
@@ -220,5 +219,70 @@
       </div>
     </main>
   </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Settings tab navigation
+  const navItems = document.querySelectorAll('.settings-nav-item');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const targetId = item.dataset.target;
+      if (targetId) {
+        document.querySelectorAll('.settings-section').forEach(sec => {
+          sec.style.display = sec.id === targetId ? '' : 'none';
+        });
+      }
+    });
+  });
+
+  // Toggle switches: persist state to localStorage
+  const toggleKeys = ['email-notifications', 'deadline-alerts'];
+  document.querySelectorAll('.toggle-switch input[type="checkbox"]').forEach((toggle, idx) => {
+    const key = toggleKeys[idx] || `toggle-${idx}`;
+    const saved = localStorage.getItem(`setting-${key}`);
+    if (saved !== null) toggle.checked = saved === 'true';
+    toggle.addEventListener('change', () => {
+      localStorage.setItem(`setting-${key}`, toggle.checked);
+      showToast(toggle.checked ? 'Setting enabled' : 'Setting disabled');
+    });
+  });
+
+  // Export Data button
+  const exportBtn = document.getElementById('export-btn');
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      const userStr = localStorage.getItem('user');
+      const user = userStr ? JSON.parse(userStr) : {};
+      const csvData = [
+        ['Name', 'Email'],
+        [user.name || 'N/A', user.email || 'N/A']
+      ].map(r => r.join(',')).join('\n');
+      const blob = new Blob([csvData], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'smartstudy-data.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Data exported successfully!');
+    });
+  }
+
+  // Delete Account button
+  const deleteBtn = document.getElementById('delete-account-btn');
+  if (deleteBtn) {
+    deleteBtn.addEventListener('click', () => {
+      const confirmed = confirm('Are you sure you want to delete your account? This action cannot be undone.');
+      if (confirmed) {
+        localStorage.clear();
+        showToast('Account deleted. Redirecting...', 'error');
+        setTimeout(() => window.location.href = 'index.html', 1500);
+      }
+    });
+  }
+});
+</script>
 </body>
 </html>

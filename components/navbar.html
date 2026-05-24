@@ -16,8 +16,11 @@
         <i data-lucide="moon" class="dark-icon" style="display: none;"></i>
         <i data-lucide="sun" class="light-icon"></i>
       </button>
-      <a href="login.html" class="btn btn-ghost">Log In</a>
-      <a href="register.html" class="btn btn-primary">Get Started</a>
+      <span class="nav-user" id="nav-user" style="display: none;">Hi, <span id="nav-user-name">Student</span></span>
+      <div class="nav-auth" id="nav-auth">
+        <a href="login.html" class="btn btn-ghost">Log In</a>
+        <a href="register.html" class="btn btn-primary">Get Started</a>
+      </div>
     </div>
     
     <button class="nav-menu-btn" id="nav-menu-btn" title="Toggle menu">
@@ -29,8 +32,9 @@
     <a href="index.html" class="nav-mobile-link">Home</a>
     <a href="index.html#features" class="nav-mobile-link">Features</a>
     <a href="index.html#howitworks" class="nav-mobile-link">How It Works</a>
-    <a href="login.html" class="btn btn-ghost" style="width: 100%; margin-top: 0.5rem;">Log In</a>
-    <a href="register.html" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Get Started</a>
+    <div class="nav-user-mobile" id="nav-user-mobile" style="display: none; font-weight: 600; padding: 0.75rem 1rem;">Hi, <span id="nav-user-name-mobile">Student</span></div>
+    <a href="login.html" class="btn btn-ghost nav-auth-mobile" style="width: 100%; margin-top: 0.5rem;">Log In</a>
+    <a href="register.html" class="btn btn-primary nav-auth-mobile" style="width: 100%; margin-top: 0.5rem;">Get Started</a>
   </div>
 </nav>
 
@@ -110,6 +114,11 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+
+  .nav-user {
+    font-weight: 600;
+    color: var(--text-primary);
   }
   
   .nav-icon-btn {

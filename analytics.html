@@ -12,7 +12,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/app.js" defer></script>
-  <script src="js/analytics.js" defer></script>
+  <script type="module" src="js/analytics.js"></script>
 </head>
 <body>
   <div class="app-layout">
@@ -20,11 +20,12 @@
     
     <main class="main-content">
       <header class="dashboard-topbar">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <h1 style="font-size: 1.25rem; margin: 0;">Analytics & Progress</h1>
+        <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+          <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" title="Toggle sidebar"><i data-lucide="menu"></i></button>
+          <h1 style="font-size: 1.25rem; margin: 0;">Analytics &amp; Progress</h1>
         </div>
         <div class="topbar-actions">
-          <button id="theme-toggle" class="icon-btn"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
+          <button id="theme-toggle" class="icon-btn" title="Toggle theme"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
         </div>
       </header>
       
@@ -65,7 +66,7 @@
                 </div>
                 <div>
                   <div style="font-size: 0.875rem; color: var(--text-secondary);">Most Productive Day</div>
-                  <div style="font-weight: 600; font-size: 1.125rem;">Tuesday</div>
+                  <div id="stat-productive-day" style="font-weight: 600; font-size: 1.125rem;">No data</div>
                 </div>
               </div>
               
@@ -75,7 +76,7 @@
                 </div>
                 <div>
                   <div style="font-size: 0.875rem; color: var(--text-secondary);">Average Session Length</div>
-                  <div style="font-weight: 600; font-size: 1.125rem;">1h 45m</div>
+                  <div id="stat-avg-session" style="font-weight: 600; font-size: 1.125rem;">0h</div>
                 </div>
               </div>
               
@@ -85,7 +86,7 @@
                 </div>
                 <div>
                   <div style="font-size: 0.875rem; color: var(--text-secondary);">Task Completion Rate</div>
-                  <div style="font-weight: 600; font-size: 1.125rem;">85%</div>
+                  <div id="stat-completion-rate" style="font-weight: 600; font-size: 1.125rem;">0%</div>
                 </div>
               </div>
               

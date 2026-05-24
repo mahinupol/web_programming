@@ -15,7 +15,7 @@
   
   <!-- App JS -->
   <script src="js/app.js" defer></script>
-  <script src="js/dashboard.js" defer></script>
+  <script type="module" src="js/dashboard.js"></script>
 </head>
 <body>
   
@@ -28,24 +28,24 @@
       
       <!-- Topbar -->
       <header class="dashboard-topbar">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <button id="mobile-menu-toggle" class="icon-btn" style="display: none;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+          <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" title="Toggle sidebar">
             <i data-lucide="menu"></i>
           </button>
           <div class="search-bar">
             <i data-lucide="search"></i>
-            <input type="text" placeholder="Search tasks, subjects...">
+            <input type="text" id="dashboard-search" placeholder="Search tasks, subjects...">
           </div>
         </div>
         
         <div class="topbar-actions">
-          <button id="theme-toggle" class="icon-btn">
+          <button id="theme-toggle" class="icon-btn" title="Toggle theme">
             <i data-lucide="moon" class="dark-icon"></i>
             <i data-lucide="sun" class="light-icon" style="display: none;"></i>
           </button>
-          <button class="icon-btn" style="position: relative;">
+          <button class="icon-btn notification-btn" title="Notifications" onclick="window.showToast('No new notifications', 'info')">
             <i data-lucide="bell"></i>
-            <span style="position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; background: var(--danger); border-radius: 50%;"></span>
+            <span class="notification-badge"></span>
           </button>
         </div>
       </header>
@@ -56,7 +56,7 @@
         <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
           <div>
             <h1 id="user-greeting" style="font-size: 1.75rem; margin-bottom: 0.25rem;">Welcome back!</h1>
-            <p style="margin: 0;">You have <strong>4</strong> tasks due today.</p>
+            <p style="margin: 0;">You have <strong id="tasks-due-today">0</strong> tasks due today.</p>
           </div>
           <button class="btn btn-primary" onclick="window.location.href='tasks.html'">
             <i data-lucide="plus"></i> New Task
@@ -64,33 +64,33 @@
         </div>
         
         <!-- Stats Grid -->
-        <div class="dashboard-grid">
+        <div class="dashboard-grid stats-grid">
           <div class="col-span-3 card stat-card">
             <div class="stat-icon blue"><i data-lucide="check-circle"></i></div>
             <div class="stat-details">
               <div class="stat-title">Tasks Completed</div>
-              <div class="stat-value">24</div>
+              <div class="stat-value" id="stat-completed">0</div>
             </div>
           </div>
           <div class="col-span-3 card stat-card">
             <div class="stat-icon orange"><i data-lucide="clock"></i></div>
             <div class="stat-details">
               <div class="stat-title">Study Hours</div>
-              <div class="stat-value">12.5<span style="font-size: 0.875rem; color: var(--text-tertiary); font-weight: 500;">h</span></div>
+              <div class="stat-value"><span id="stat-hours">0</span><span style="font-size: 0.875rem; color: var(--text-tertiary); font-weight: 500;">h</span></div>
             </div>
           </div>
           <div class="col-span-3 card stat-card">
             <div class="stat-icon green"><i data-lucide="flame"></i></div>
             <div class="stat-details">
               <div class="stat-title">Current Streak</div>
-              <div class="stat-value">5<span style="font-size: 0.875rem; color: var(--text-tertiary); font-weight: 500;"> Days</span></div>
+              <div class="stat-value"><span id="stat-streak">0</span><span style="font-size: 0.875rem; color: var(--text-tertiary); font-weight: 500;"> Days</span></div>
             </div>
           </div>
           <div class="col-span-3 card stat-card">
             <div class="stat-icon red"><i data-lucide="alert-circle"></i></div>
             <div class="stat-details">
               <div class="stat-title">Overdue Tasks</div>
-              <div class="stat-value">2</div>
+              <div class="stat-value" id="stat-overdue">0</div>
             </div>
           </div>
         </div>
@@ -112,12 +112,11 @@
             <div class="card-header">
               <h2 class="card-title">Upcoming Deadlines</h2>
             </div>
-            <div style="flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--text-tertiary); text-align: center;">
+            <div id="upcoming-deadlines" style="flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--text-tertiary); text-align: center;">
               <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
                 <i data-lucide="calendar" style="width: 32px; height: 32px; opacity: 0.5;"></i>
               </div>
-              <p>No immediate deadlines.</p>
-              <p style="font-size: 0.875rem;">Great job staying ahead!</p>
+              <p>No upcoming deadlines.</p>
             </div>
           </div>
           
@@ -130,8 +129,9 @@
   </div>
 
   <style>
+    .mobile-menu-btn { display: none; }
     @media (max-width: 768px) {
-      #mobile-menu-toggle { display: flex !important; }
+      .mobile-menu-btn { display: flex !important; }
     }
   </style>
 </body>

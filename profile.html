@@ -11,6 +11,7 @@
   
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/app.js" defer></script>
+  <script type="module" src="js/profile.js"></script>
   
   <style>
     .profile-header {
@@ -96,11 +97,12 @@
     
     <main class="main-content">
       <header class="dashboard-topbar">
-        <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+          <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" title="Toggle sidebar"><i data-lucide="menu"></i></button>
           <h1 style="font-size: 1.25rem; margin: 0;">My Profile</h1>
         </div>
         <div class="topbar-actions">
-          <button id="theme-toggle" class="icon-btn"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
+          <button id="theme-toggle" class="icon-btn" title="Toggle theme"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
         </div>
       </header>
       
@@ -111,12 +113,12 @@
             <div class="profile-cover"></div>
             
             <div class="profile-avatar-container">
-              <div class="profile-avatar" id="profile-initial">S</div>
+              <div class="profile-avatar" id="profile-initial">?</div>
             </div>
             
             <div class="profile-info">
-              <h2 id="profile-name" style="margin-bottom: 0.25rem;">Student User</h2>
-              <p id="profile-email" style="margin: 0;">student@university.edu</p>
+              <h2 id="profile-name" style="margin-bottom: 0.25rem;">Loading...</h2>
+              <p id="profile-email" style="margin: 0;"></p>
             </div>
             
             <div style="flex: 1; text-align: right; z-index: 1; padding-bottom: 1rem; padding-right: 2rem;">
@@ -127,13 +129,13 @@
           <div style="padding: 2rem; border-top: 1px solid var(--border-color); display: flex; gap: 2rem;">
             <div style="flex: 1;">
               <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-secondary);">Bio</h3>
-              <p>Computer Science major focusing on AI and Machine Learning. Trying to keep my study schedule organized!</p>
+              <p id="profile-bio" style="margin: 0;">No bio yet.</p>
             </div>
             <div style="flex: 1;">
               <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-secondary);">Details</h3>
               <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem;">
-                <li style="display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="map-pin" style="width:16px;"></i> San Francisco, CA</li>
-                <li style="display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="calendar" style="width:16px;"></i> Joined September 2026</li>
+                <li style="display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="map-pin" style="width:16px;"></i> <span id="profile-location">No location set</span></li>
+                <li style="display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="calendar" style="width:16px;"></i> <span id="profile-joined">Not set</span></li>
               </ul>
             </div>
           </div>
@@ -142,54 +144,20 @@
         <h2 style="font-size: 1.25rem; margin-bottom: 1.5rem;">Achievements</h2>
         
         <div class="achievement-grid">
-          
-          <div class="achievement-card">
-            <div class="achievement-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
-              <i data-lucide="award" style="width:32px;height:32px;"></i>
-            </div>
-            <div>
-              <h3 style="font-size: 1rem; margin-bottom: 0.25rem;">Consistent Learner</h3>
-              <p style="font-size: 0.75rem; color: var(--text-tertiary); margin: 0;">Maintained a 5-day study streak.</p>
-            </div>
-          </div>
-          
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <i data-lucide="check-circle" style="width:32px;height:32px;"></i>
-            </div>
-            <div>
-              <h3 style="font-size: 1rem; margin-bottom: 0.25rem;">Task Master</h3>
-              <p style="font-size: 0.75rem; color: var(--text-tertiary); margin: 0;">Completed 100+ tasks on time.</p>
-            </div>
-          </div>
-          
-          <div class="achievement-card" style="opacity: 0.5;">
+          <div class="achievement-card" style="opacity: 0.7;">
             <div class="achievement-icon" style="background: var(--bg-secondary); color: var(--text-tertiary);">
-              <i data-lucide="lock" style="width:32px;height:32px;"></i>
+              <i data-lucide="star" style="width:32px;height:32px;"></i>
             </div>
             <div>
-              <h3 style="font-size: 1rem; margin-bottom: 0.25rem;">Early Bird</h3>
-              <p style="font-size: 0.75rem; color: var(--text-tertiary); margin: 0;">Complete 10 tasks before 9 AM.</p>
+              <h3 style="font-size: 1rem; margin-bottom: 0.25rem;">No achievements yet</h3>
+              <p style="font-size: 0.75rem; color: var(--text-tertiary); margin: 0;">Complete tasks to unlock badges.</p>
             </div>
           </div>
-          
         </div>
         
       </div>
     </main>
   </div>
   
-  <script>
-    // Set profile info from local storage if available
-    document.addEventListener('DOMContentLoaded', () => {
-      const userStr = localStorage.getItem('user');
-      if (userStr) {
-        const user = JSON.parse(userStr);
-        document.getElementById('profile-name').innerText = user.name;
-        document.getElementById('profile-email').innerText = user.email;
-        document.getElementById('profile-initial').innerText = user.name.charAt(0).toUpperCase();
-      }
-    });
-  </script>
 </body>
 </html>

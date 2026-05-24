@@ -29,7 +29,7 @@
       align-items: center;
       justify-content: space-between;
       text-align: left;
-      padding: 6rem 5% 4rem;
+      padding: 6rem 3% 4rem;
       gap: 3rem;
       position: relative;
       overflow: hidden;
@@ -423,7 +423,7 @@
     
     /* Features Section */
     .features-section {
-      padding: 8rem 2rem;
+      padding: 8rem 3%;
       background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
       position: relative;
       overflow: hidden;
@@ -573,7 +573,7 @@
     
     /* How It Works Section */
     .howitworks-section {
-      padding: 8rem 2rem;
+      padding: 8rem 3%;
       background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
       position: relative;
       overflow: hidden;
@@ -647,7 +647,7 @@
     
     /* Testimonials Section */
     .testimonials-section {
-      padding: 8rem 2rem;
+      padding: 8rem 3%;
       background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
       position: relative;
       overflow: hidden;
@@ -733,12 +733,12 @@
     
     /* CTA Section */
     .cta-section {
-      padding: 8rem 2rem;
+      padding: 8rem 3%;
       background: linear-gradient(135deg, var(--accent-primary), var(--secondary-primary));
       position: relative;
       overflow: hidden;
       border-radius: var(--border-radius-lg);
-      margin: 4rem 2rem;
+      margin: 4rem 3%;
     }
     
     .cta-section::before {
@@ -786,7 +786,7 @@
     
     /* FAQs Section */
     .faqs-section {
-      padding: 8rem 2rem;
+      padding: 8rem 3%;
       background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
       position: relative;
       overflow: hidden;
@@ -887,6 +887,10 @@
       .step-card:not(:last-child)::after {
         display: none;
       }
+
+      .hero-visual {
+        display: none;
+      }
     }
   </style>
 
@@ -902,8 +906,8 @@
   </style>
 </head>
 <body>
-  <video id="scroll-bg-video" src="gemini_generated_video_65796784.MP4" muted playsinline style="position: fixed; top: 0; left: 15vw; width: 70vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,0.1);"></video>
-  <div id="video-overlay" style="position: fixed; top: 0; left: 15vw; width: 70vw; height: 100vh; background: var(--bg-primary); opacity: 0.85; z-index: -1; pointer-events: none; transition: background 0.3s; border-radius: 20px;"></div>
+  <video id="scroll-bg-video" src="gemini_generated_video_65796784.MP4" muted playsinline style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none; border-radius: 0; box-shadow: 0 0 50px rgba(0,0,0,0.1);"></video>
+  <div id="video-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg-primary); opacity: 0.85; z-index: -1; pointer-events: none; transition: background 0.3s; border-radius: 0;"></div>
   <div id="navbar-placeholder"></div>
   
   <main>
@@ -1299,6 +1303,29 @@
         });
       }
     });
+  </script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBjfQZ-9RiDqT9823MYcXCO--1-ifmf1rc",
+      authDomain: "web-programming-d2d83.firebaseapp.com",
+      projectId: "web-programming-d2d83",
+      storageBucket: "web-programming-d2d83.firebasestorage.app",
+      messagingSenderId: "1986464722",
+      appId: "1:1986464722:web:d21f98eab6e29ed4af960b",
+      measurementId: "G-DN50EK2PJQ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
   </script>
 </body>
 </html>

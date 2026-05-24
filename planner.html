@@ -11,6 +11,7 @@
   
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/app.js" defer></script>
+  <script type="module" src="js/planner.js"></script>
   
   <style>
     .planner-header {
@@ -125,6 +126,30 @@
       color: var(--text-primary);
       box-shadow: var(--shadow-sm);
     }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-tertiary);
+      border-radius: var(--border-radius-lg);
+      width: 100%;
+      max-width: 520px;
+      padding: 2rem;
+      box-shadow: var(--shadow-float);
+    }
   </style>
 </head>
 <body>
@@ -133,11 +158,12 @@
     
     <main class="main-content">
       <header class="dashboard-topbar">
-        <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+          <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" title="Toggle sidebar"><i data-lucide="menu"></i></button>
           <h1 style="font-size: 1.25rem; margin: 0;">Daily Planner</h1>
         </div>
         <div class="topbar-actions">
-          <button id="theme-toggle" class="icon-btn"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
+          <button id="theme-toggle" class="icon-btn" title="Toggle theme"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
         </div>
       </header>
       
@@ -145,105 +171,106 @@
         
         <div class="planner-header">
           <div class="date-selector">
-            <button class="icon-btn"><i data-lucide="chevron-left"></i></button>
-            <div class="current-date">Today, Oct 24</div>
-            <button class="icon-btn"><i data-lucide="chevron-right"></i></button>
+            <button id="date-prev" class="icon-btn"><i data-lucide="chevron-left"></i></button>
+            <div id="current-date" class="current-date">Today</div>
+            <button id="date-next" class="icon-btn"><i data-lucide="chevron-right"></i></button>
           </div>
           
-          <div class="view-toggle">
-            <button class="view-btn active">Daily</button>
-            <button class="view-btn">Weekly</button>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="view-toggle">
+              <button class="view-btn active">Daily</button>
+              <button class="view-btn">Weekly</button>
+            </div>
+            <button id="add-session-btn" class="btn btn-primary"><i data-lucide="plus"></i> Add Session</button>
           </div>
         </div>
         
         <div class="timeline">
-          <!-- 08:00 -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="8">
             <div class="timeline-time">08:00</div>
-            <div class="timeline-content"></div>
+            <div class="timeline-content" data-slot="8"></div>
           </div>
-          
-          <!-- 09:00 -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="9">
             <div class="timeline-time">09:00</div>
-            <div class="timeline-content">
-              <div class="timeline-block" style="border-left-color: var(--success); background: rgba(16, 185, 129, 0.1);">
-                <div class="block-title">Calculus Lecture</div>
-                <div class="block-meta">
-                  <span><i data-lucide="map-pin" style="width:12px;height:12px;"></i> Room 302</span>
-                  <span>09:00 - 10:30</span>
-                </div>
-              </div>
-            </div>
+            <div class="timeline-content" data-slot="9"></div>
           </div>
-          
-          <!-- 10:00 -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="10">
             <div class="timeline-time">10:00</div>
-            <div class="timeline-content"></div>
+            <div class="timeline-content" data-slot="10"></div>
           </div>
-          
-          <!-- 11:00 -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="11">
             <div class="timeline-time">11:00</div>
-            <div class="timeline-content">
-              <div class="timeline-block" style="border-left-color: var(--accent-primary); background: var(--accent-light);">
-                <div class="block-title">Deep Work: CS Project</div>
-                <div class="block-meta">
-                  <span><i data-lucide="book" style="width:12px;height:12px;"></i> Study Session</span>
-                  <span>11:00 - 13:00</span>
-                </div>
-              </div>
-            </div>
+            <div class="timeline-content" data-slot="11"></div>
           </div>
-          
-          <!-- 12:00 -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="12">
             <div class="timeline-time">12:00</div>
-            <div class="timeline-content"></div>
+            <div class="timeline-content" data-slot="12"></div>
           </div>
-          
-          <!-- 13:00 -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="13">
             <div class="timeline-time">13:00</div>
-            <div class="timeline-content">
-              <div class="timeline-block" style="border-left-color: var(--text-tertiary); background: var(--bg-secondary); border-style: dashed;">
-                <div class="block-title" style="color: var(--text-secondary);">Lunch Break</div>
-              </div>
-            </div>
+            <div class="timeline-content" data-slot="13"></div>
           </div>
-          
-          <!-- 14:00 -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="14">
             <div class="timeline-time">14:00</div>
-            <div class="timeline-content">
-               <div class="timeline-block" style="border-left-color: var(--warning); background: rgba(245, 158, 11, 0.1);">
-                <div class="block-title">Read English Literature</div>
-                <div class="block-meta">
-                  <span><i data-lucide="book-open" style="width:12px;height:12px;"></i> Chapter 4</span>
-                  <span>14:00 - 15:30</span>
-                </div>
-              </div>
-            </div>
+            <div class="timeline-content" data-slot="14"></div>
           </div>
-          
-          <!-- 15:00 - 17:00 (Empty for spacing) -->
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="15">
             <div class="timeline-time">15:00</div>
-            <div class="timeline-content"></div>
+            <div class="timeline-content" data-slot="15"></div>
           </div>
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="16">
             <div class="timeline-time">16:00</div>
-            <div class="timeline-content"></div>
+            <div class="timeline-content" data-slot="16"></div>
           </div>
-          <div class="timeline-row">
+          <div class="timeline-row" data-hour="17">
             <div class="timeline-time">17:00</div>
-            <div class="timeline-content"></div>
+            <div class="timeline-content" data-slot="17"></div>
           </div>
         </div>
         
       </div>
     </main>
+  </div>
+
+  <div id="sessionModal" class="modal-overlay">
+    <div class="modal-content slide-up">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem;">Add Session</h2>
+        <button class="icon-btn" onclick="document.getElementById('sessionModal').classList.remove('active')"><i data-lucide="x"></i></button>
+      </div>
+      <form id="session-form">
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input type="text" id="session-title" class="form-control" required placeholder="Study session">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input type="date" id="session-date" class="form-control" required>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Start Time</label>
+            <input type="time" id="session-start" class="form-control" required>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">End Time</label>
+            <input type="time" id="session-end" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Location</label>
+          <input type="text" id="session-location" class="form-control" placeholder="Optional">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <input type="text" id="session-category" class="form-control" placeholder="e.g. Study, Lecture">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-ghost" onclick="document.getElementById('sessionModal').classList.remove('active')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Session</button>
+        </div>
+      </form>
+    </div>
   </div>
 </body>
 </html>

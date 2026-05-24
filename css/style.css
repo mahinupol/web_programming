@@ -1,3 +1,13 @@
+/* Task Completion Animation */
+.task-card.fade-out {
+  opacity: 0.3 !important;
+  transition: opacity 0.5s;
+}
+.task-title.crossed {
+  text-decoration: line-through !important;
+  color: var(--text-tertiary) !important;
+  transition: color 0.3s;
+}
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap');
 
 /* ============================================

@@ -11,6 +11,7 @@
   
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/app.js" defer></script>
+  <script type="module" src="js/tasks.js"></script>
   
   <style>
     .task-board {
@@ -133,100 +134,53 @@
     
     <main class="main-content">
       <header class="dashboard-topbar">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <button class="icon-btn mobile-only" style="display: none;"><i data-lucide="menu"></i></button>
+        <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+          <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" title="Toggle sidebar"><i data-lucide="menu"></i></button>
           <h1 style="font-size: 1.25rem; margin: 0;">Task Management</h1>
         </div>
         <div class="topbar-actions">
-          <button id="theme-toggle" class="icon-btn"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
+          <div class="search-bar" style="width: 220px;">
+            <i data-lucide="search"></i>
+            <input type="text" id="tasks-search" placeholder="Search tasks...">
+          </div>
+          <button id="theme-toggle" class="icon-btn" title="Toggle theme"><i data-lucide="moon" class="dark-icon"></i><i data-lucide="sun" class="light-icon" style="display: none;"></i></button>
         </div>
       </header>
       
       <div class="page-content fade-in">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
-          <div class="search-bar" style="width: 300px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <div class="search-bar task-search-bar" style="width: 300px;">
             <i data-lucide="search"></i>
-            <input type="text" placeholder="Search tasks...">
+            <input type="text" id="task-search-input" placeholder="Search tasks...">
           </div>
-          <button class="btn btn-primary" onclick="document.getElementById('taskModal').classList.add('active')">
+          <button class="btn btn-primary" id="open-task-modal-btn">
             <i data-lucide="plus"></i> Add Task
           </button>
         </div>
         
         <!-- Kanban Board -->
         <div class="task-board">
-          
-          <div class="board-column">
+          <div class="board-column" data-status="todo">
             <div class="column-header">
               <span>To Do</span>
-              <span class="column-count">2</span>
+              <span class="column-count" data-count="todo">0</span>
             </div>
-            
-            <div class="task-card">
-              <div class="task-tags">
-                <span class="badge badge-danger">High Priority</span>
-                <span class="badge" style="background: rgba(94, 106, 210, 0.1); color: #5e6ad2;">Computer Science</span>
-              </div>
-              <div class="task-title">Implement Database Schema</div>
-              <div class="task-desc">Create the normalized relational schema for the new project including user, task, and category tables.</div>
-              <div class="task-footer">
-                <span><i data-lucide="calendar" style="width: 12px; height: 12px; vertical-align: -2px;"></i> Oct 24</span>
-                <span><i data-lucide="clock" style="width: 12px; height: 12px; vertical-align: -2px;"></i> 2h</span>
-              </div>
-            </div>
-            
-            <div class="task-card">
-              <div class="task-tags">
-                <span class="badge badge-warning">Medium Priority</span>
-                <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">Mathematics</span>
-              </div>
-              <div class="task-title">Calculus Worksheet 5</div>
-              <div class="task-desc">Complete odd numbers from section 4.3 on integration techniques.</div>
-              <div class="task-footer">
-                <span><i data-lucide="calendar" style="width: 12px; height: 12px; vertical-align: -2px;"></i> Oct 25</span>
-                <span><i data-lucide="clock" style="width: 12px; height: 12px; vertical-align: -2px;"></i> 1.5h</span>
-              </div>
-            </div>
+            <div class="column-body" data-list="todo"></div>
           </div>
-          
-          <div class="board-column">
+          <div class="board-column" data-status="inProgress">
             <div class="column-header">
               <span>In Progress</span>
-              <span class="column-count">1</span>
+              <span class="column-count" data-count="inProgress">0</span>
             </div>
-            
-            <div class="task-card">
-              <div class="task-tags">
-                <span class="badge badge-danger">High Priority</span>
-                <span class="badge" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">English Literature</span>
-              </div>
-              <div class="task-title">Read Chapter 4 & 5</div>
-              <div class="task-desc">Read the assigned chapters and write a short summary reflecting on the main character's development.</div>
-              <div class="task-footer">
-                <span><i data-lucide="calendar" style="width: 12px; height: 12px; vertical-align: -2px;"></i> Today</span>
-                <span><i data-lucide="clock" style="width: 12px; height: 12px; vertical-align: -2px;"></i> 3h</span>
-              </div>
-            </div>
+            <div class="column-body" data-list="inProgress"></div>
           </div>
-          
-          <div class="board-column">
+          <div class="board-column" data-status="done">
             <div class="column-header">
               <span>Completed</span>
-              <span class="column-count">1</span>
+              <span class="column-count" data-count="done">0</span>
             </div>
-            
-            <div class="task-card" style="opacity: 0.7;">
-              <div class="task-tags">
-                <span class="badge badge-success">Done</span>
-              </div>
-              <div class="task-title" style="text-decoration: line-through;">Physics Lab Report</div>
-              <div class="task-desc">Submit the final draft of the pendulum experiment.</div>
-              <div class="task-footer">
-                <span><i data-lucide="check" style="width: 12px; height: 12px; vertical-align: -2px;"></i> Submitted</span>
-              </div>
-            </div>
+            <div class="column-body" data-list="done"></div>
           </div>
-          
         </div>
       </div>
     </main>
@@ -240,37 +194,61 @@
         <button class="icon-btn" onclick="document.getElementById('taskModal').classList.remove('active')"><i data-lucide="x"></i></button>
       </div>
       
-      <form onsubmit="event.preventDefault(); document.getElementById('taskModal').classList.remove('active'); showToast('Task created successfully!');">
+      <form id="task-form">
         <div class="form-group">
           <label class="form-label">Task Title</label>
-          <input type="text" class="form-control" required placeholder="What needs to be done?">
+          <input type="text" id="task-title" class="form-control" required placeholder="What needs to be done?">
         </div>
         <div class="form-group">
           <label class="form-label">Subject</label>
-          <select class="form-control">
-            <option>Computer Science</option>
-            <option>Mathematics</option>
-            <option>English Literature</option>
-            <option>Physics</option>
-          </select>
+          <input type="text" id="task-subject" class="form-control" placeholder="e.g. Mathematics">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea id="task-description" class="form-control" rows="3" placeholder="Optional details"></textarea>
         </div>
         <div style="display: flex; gap: 1rem;">
           <div class="form-group" style="flex: 1;">
             <label class="form-label">Due Date</label>
-            <input type="date" class="form-control" required>
+            <input type="date" id="task-due" class="form-control">
           </div>
           <div class="form-group" style="flex: 1;">
+            <label class="form-label">Estimated Time (hours)</label>
+            <input type="number" id="task-duration" class="form-control" placeholder="2" min="0" step="0.25">
+          </div>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <div class="form-group" style="flex: 1;">
             <label class="form-label">Priority</label>
-            <select class="form-control">
-              <option>High</option>
-              <option>Medium</option>
-              <option>Low</option>
+            <select id="task-priority" class="form-control">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Status</label>
+            <select id="task-status" class="form-control">
+              <option value="todo" selected>To Do</option>
+              <option value="inProgress">In Progress</option>
+              <option value="done">Completed</option>
             </select>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Save Task</button>
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-ghost" onclick="document.getElementById('taskModal').classList.remove('active')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Task</button>
+        </div>
       </form>
     </div>
   </div>
 </body>
+<style>
+  @media (max-width: 600px) {
+    .task-search-bar { display: none; }
+    .task-board { flex-direction: column; }
+    .board-column { min-width: 100%; }
+  }
+</style>
 </html>
+
